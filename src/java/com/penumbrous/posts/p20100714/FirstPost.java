@@ -1,4 +1,3 @@
-// Copyright 2010 Google Inc.  All Rights Reserved 
 
 package com.penumbrous.posts.p20100714;
 
