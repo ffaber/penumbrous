@@ -52,7 +52,7 @@ import com.google.api.adwords.v201003.cm.UserStatus;
  * This class is a prototype of what it would look like to dump the entities
  * within an account.
  *
- * @author ffaber@google.com (Fred Faber)
+ * @author penumbrousdotcom@gmail.com (Fred Faber)
  */
 class DumpAccount {
 
