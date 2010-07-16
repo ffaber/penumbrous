@@ -20,6 +20,7 @@ package com.penumbrous.adwordsapi.prototypes;
 import com.google.api.adwords.lib.AdWordsService;
 import com.google.api.adwords.lib.AdWordsServiceLogger;
 import com.google.api.adwords.lib.AdWordsUser;
+import com.google.api.adwords.v201003.cm.Ad;
 import com.google.api.adwords.v201003.cm.AdGroup;
 import com.google.api.adwords.v201003.cm.AdGroupAd;
 import com.google.api.adwords.v201003.cm.AdGroupAdPage;
@@ -33,6 +34,7 @@ import com.google.api.adwords.v201003.cm.Campaign;
 import com.google.api.adwords.v201003.cm.CampaignPage;
 import com.google.api.adwords.v201003.cm.CampaignSelector;
 import com.google.api.adwords.v201003.cm.CampaignServiceInterface;
+import com.google.api.adwords.v201003.cm.TextAd;
 
 /**
  * This class is a prototype of what it would look like to dump the entities
@@ -97,20 +99,31 @@ class DumpAccount {
 
           // Get all ads.
           AdGroupAdPage adGroupAdPage = adGroupAdService.get(adGroupAdSelector);
-          if (adGroupAdPage == null) {
+          // TODO(ffaber): determine why we need to check for null here.  Twice.
+          if (adGroupAdPage == null || adGroupAdPage.getEntries() == null) {
             System.out.println("No ads found in camapign");
             continue;
           }
 
           // Display ads.
           for (AdGroupAd adGroupAd : adGroupAdPage.getEntries()) {
+            Ad ad = adGroupAd.getAd();
             System.out.println(
-                "Found ad with id  \"" + adGroupAd.getAd().getId() + "\""
-                + "\n\t and type \"" + adGroupAd.getAd().getAdType()
-                + "\n\t and display url \"" + adGroupAd.getAd().getDisplayUrl()
-                + "\n\t and url url \"" + adGroupAd.getAd().getDisplayUrl()
+                "Found ad with id  \"" + ad.getId() + "\""
+                + "\n\t and type \"" + ad.getAdType()
+                + "\n\t and display url \"" + ad.getDisplayUrl()
+                + "\n\t and url url \"" + ad.getDisplayUrl()
                 + "\n\t and cost \"" + adGroupAd.getStats().getCost()
                 + "");
+            if (TextAd.class.isInstance(ad)) {
+              TextAd textAd = (TextAd) ad;
+              System.out.println(
+                  "Text ad has text: "
+                  + "\n\t" + textAd.getHeadline()
+                  + "\n\t" + textAd.getDescription1()
+                  + "\n\t" + textAd.getDescription2()
+                  + "");
+            }
           }
         }
       }
