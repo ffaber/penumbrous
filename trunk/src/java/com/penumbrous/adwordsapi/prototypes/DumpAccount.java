@@ -27,14 +27,26 @@ import com.google.api.adwords.v201003.cm.AdGroupAdPage;
 import com.google.api.adwords.v201003.cm.AdGroupAdSelector;
 import com.google.api.adwords.v201003.cm.AdGroupAdServiceInterface;
 import com.google.api.adwords.v201003.cm.AdGroupAdStatus;
+import com.google.api.adwords.v201003.cm.AdGroupCriterion;
+import com.google.api.adwords.v201003.cm.AdGroupCriterionBids;
+import com.google.api.adwords.v201003.cm.AdGroupCriterionIdFilter;
+import com.google.api.adwords.v201003.cm.AdGroupCriterionPage;
+import com.google.api.adwords.v201003.cm.AdGroupCriterionSelector;
+import com.google.api.adwords.v201003.cm.AdGroupCriterionServiceInterface;
 import com.google.api.adwords.v201003.cm.AdGroupPage;
 import com.google.api.adwords.v201003.cm.AdGroupSelector;
 import com.google.api.adwords.v201003.cm.AdGroupServiceInterface;
+import com.google.api.adwords.v201003.cm.BiddableAdGroupCriterion;
 import com.google.api.adwords.v201003.cm.Campaign;
 import com.google.api.adwords.v201003.cm.CampaignPage;
 import com.google.api.adwords.v201003.cm.CampaignSelector;
 import com.google.api.adwords.v201003.cm.CampaignServiceInterface;
+import com.google.api.adwords.v201003.cm.Criterion;
+import com.google.api.adwords.v201003.cm.DateRange;
+import com.google.api.adwords.v201003.cm.Stats;
+import com.google.api.adwords.v201003.cm.StatsSelector;
 import com.google.api.adwords.v201003.cm.TextAd;
+import com.google.api.adwords.v201003.cm.UserStatus;
 
 /**
  * This class is a prototype of what it would look like to dump the entities
@@ -64,6 +76,10 @@ class DumpAccount {
       AdGroupAdServiceInterface adGroupAdService =
           user.getService(AdWordsService.V201003.ADGROUP_AD_SERVICE);
 
+      // Get the AdGroupCriterionService.
+      AdGroupCriterionServiceInterface adGroupCriterionService =
+          user.getService(AdWordsService.V201003.ADGROUP_CRITERION_SERVICE);
+      
       // Create selector.
       CampaignSelector campaignSelector = new CampaignSelector();
 
@@ -125,6 +141,85 @@ class DumpAccount {
                   + "");
             }
           }
+
+          // Criterion logic below
+          AdGroupCriterionSelector adGroupCriterionSelector
+              = new AdGroupCriterionSelector();
+          adGroupCriterionSelector.setUserStatuses(
+              new UserStatus[] {UserStatus.ACTIVE});
+          StatsSelector statsSelector = new StatsSelector();
+          statsSelector.setDateRange(new DateRange("19700101", "20380101"));
+          adGroupCriterionSelector.setStatsSelector(statsSelector);
+
+          // Create id filter.
+          AdGroupCriterionIdFilter idFilter = new AdGroupCriterionIdFilter();
+          idFilter.setAdGroupId(adGroupId);
+          adGroupCriterionSelector.setIdFilters(
+              new AdGroupCriterionIdFilter[] {idFilter});
+
+          // Get all active ad group criteria.
+          AdGroupCriterionPage adGroupCriterionPage
+              = adGroupCriterionService.get(adGroupCriterionSelector);
+
+          // Get all criteria.
+          if (adGroupCriterionPage == null
+              || adGroupCriterionPage.getEntries() == null) {
+            System.out.println("Nocriteria found in camapign");
+            continue;
+          }
+
+          for (AdGroupCriterion adGroupCriterion
+              : adGroupCriterionPage.getEntries()) {
+            if (BiddableAdGroupCriterion.class.isInstance(adGroupCriterion)) {
+              BiddableAdGroupCriterion biddableAdGroupCriterion =
+                  (BiddableAdGroupCriterion) adGroupCriterion;
+
+              Criterion criterion = biddableAdGroupCriterion.getCriterion();
+              AdGroupCriterionBids adGroupCriterionBids =
+                  biddableAdGroupCriterion.getBids();
+              Stats stats = biddableAdGroupCriterion.getStats();
+
+              System.out.println("Found ad group criterion: "
+                  + "\n\t" + "\"criterion id \""
+                  + "\n\t" + criterion.getId()
+                  + "\n\t" + "\"type \""
+                  + "\n\t" + criterion.getCriterionType()
+                  + "\n\t" + "\"user status \""
+                  + "\n\t" + biddableAdGroupCriterion.getUserStatus()
+                  + "\n\t" + "\"dest url \""
+                  + "\n\t" + biddableAdGroupCriterion.getDestinationUrl()
+                  + "\n\t" + "\"first page cpc\""
+                  + "\n\t" + biddableAdGroupCriterion.getFirstPageCpc()
+                      .getAmount().getMicroAmount()
+                  + "\n\t" + "\"system status\""
+                  + "\n\t" + biddableAdGroupCriterion.getSystemServingStatus()
+                  + "\n\t" + "\"bid type\""
+                  + "\n\t" + adGroupCriterionBids.getAdGroupCriterionBidsType()
+                  + "\n\t" + "\"stat start date\""
+                  + "\n\t" + stats.getStartDate()
+                  + "\n\t" + "\"stat end date\""
+                  + "\n\t" + stats.getEndDate()
+                  + "\n\t" + "\"stat type\""
+                  + "\n\t" + stats.getStatsType()
+                  + "\n\t" + "\"average cpc\""
+                  + "\n\t" + stats.getAverageCpc().getMicroAmount()
+                  + "\n\t" + "\"average position\""
+                  + "\n\t" + stats.getAveragePosition()
+                  + "\n\t" + "\"clicks\""
+                  + "\n\t" + stats.getClicks()
+                  + "\n\t" + "\"cost\""
+                  + "\n\t" + stats.getCost().getMicroAmount()
+                  + "\n\t" + "\"ctr\""
+                  + "\n\t" + String.format("%.4f", stats.getCtr())
+                  + "\n\t" + "\"impressions\""
+                  + "\n\t" + stats.getImpressions()
+                  + "\n\t" + "\"network\""
+                  + "\n\t" + stats.getNetwork().getValue()
+                  + "");
+              biddableAdGroupCriterion.getStats();
+            }
+          }
+         System.exit(0); 
         }
       }
     } catch (Exception e) {
