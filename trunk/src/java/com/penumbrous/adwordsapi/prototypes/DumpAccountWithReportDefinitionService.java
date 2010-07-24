@@ -9,10 +9,13 @@ import com.google.api.adwords.v201003.cm.DownloadFormat;
 import com.google.api.adwords.v201003.cm.Operator;
 import com.google.api.adwords.v201003.cm.ReportDefinition;
 import com.google.api.adwords.v201003.cm.ReportDefinitionDateRangeType;
+import com.google.api.adwords.v201003.cm.ReportDefinitionField;
 import com.google.api.adwords.v201003.cm.ReportDefinitionOperation;
 import com.google.api.adwords.v201003.cm.ReportDefinitionReportType;
 import com.google.api.adwords.v201003.cm.ReportDefinitionServiceInterface;
 import com.google.api.adwords.v201003.cm.Selector;
+
+import java.util.Arrays;
 
 /**
  * This class demonstrates how to dump an account using the
@@ -46,6 +49,21 @@ class DumpAccountWithReportDefinitionService {
         ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
     reportDefinition.setDownloadFormat(DownloadFormat.XML);
     reportDefinition.setSelector(selector);
+
+    // Get report fields.
+    ReportDefinitionField[] reportDefinitionFields =
+        reportDefinitionService.getReportFields(
+            ReportDefinitionReportType.KEYWORDS_PERFORMANCE_REPORT);
+    // Display report fields.
+    System.out.println("Available fields for report:");
+    for (ReportDefinitionField reportDefinitionField : reportDefinitionFields) {
+      String enumValues = reportDefinitionField.getEnumValues() == null ?
+          "" : Arrays.asList(reportDefinitionField.getEnumValues()).toString();
+      System.out.print("\t"
+          + reportDefinitionField.getFieldName()
+          + "EnumValues: " + enumValues
+          + " (" + reportDefinitionField.getFieldType() + ")");
+    }
 
     // Create operations.
     ReportDefinitionOperation operation = new ReportDefinitionOperation();
