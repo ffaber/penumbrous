@@ -73,7 +73,7 @@ class DumpAccountWithReportDefinitionService {
     System.out.println("Available fields for report:");
     for (ReportDefinitionField reportDefinitionField : reportDefinitionFields) {
       String enumValues = reportDefinitionField.getEnumValues() == null ?
-          "" : Arrays.asList(reportDefinitionField.getEnumValues()).toString();
+          "" : Arrays.toString(reportDefinitionField.getEnumValues());
       System.out.print("\t"
           + reportDefinitionField.getFieldName()
           + "EnumValues: " + enumValues
