@@ -540,7 +540,12 @@
         <root url="file://$PROJECT_DIR$/lib" />
       </CLASSES>
       <JAVADOC />
-      <SOURCES />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/build_lib/axis-1_4-src.jar!/axis-1_4/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/axis-1.4-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/axis-1.4-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/axis-1.4-src.jar!/" />
+      </SOURCES>
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
     </library>
     <library name="build_lib">
