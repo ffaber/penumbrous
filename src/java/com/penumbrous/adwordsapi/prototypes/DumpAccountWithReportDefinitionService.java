@@ -50,6 +50,12 @@ class DumpAccountWithReportDefinitionService {
     ReportDefinitionServiceInterface reportDefinitionService =
         user.getService(AdWordsService.V201003.REPORT_DEFINITION_SERVICE);
 
+    // This gets us something like this:
+    // Keywords performance report #1279978267920 (All Time)
+    // Ad group ID,Keyword ID,Keyword text,Match type,Impressions,Clicks,Cost
+    // 214816660,3000000,Content,Broad,64,0,0.00
+    // 214816660,11783461,rhode island,Broad,2,0,0.00
+    // 214816660,17394710,ri real estate,Broad,3045,2,1.94
     Selector selector = new Selector();
     selector.setFields(new String[]{ "AdGroupId", "Id", "KeywordText",
         "KeywordMatchType", "Impressions", "Clicks", "Cost" });
@@ -76,7 +82,7 @@ class DumpAccountWithReportDefinitionService {
           "" : Arrays.toString(reportDefinitionField.getEnumValues());
       System.out.print("\t"
           + reportDefinitionField.getFieldName()
-          + "EnumValues: " + enumValues
+          + (enumValues.equals("") ? "" : "EnumValues: " + enumValues)
           + " (" + reportDefinitionField.getFieldType() + ")");
     }
 
