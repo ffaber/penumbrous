@@ -25,9 +25,17 @@
     <servlet-name>holdingpattern</servlet-name>
     <servlet-class>com.penumbrous.penumbrousadsapi.servlets.HoldingPatternServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>sandboxinit</servlet-name>
+    <servlet-class>com.penumbrous.penumbrousadsapi.servlets.SandboxInitServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
-    <servlet-name>holdingpattern</servlet-name>
     <url-pattern>/holdingpattern</url-pattern>
+    <servlet-name>holdingpattern</servlet-name>
+  </servlet-mapping>
+  <servlet-mapping>
+    <url-pattern>/sandboxinit</url-pattern>
+    <servlet-name>sandboxinit</servlet-name>
   </servlet-mapping>
 </web-app>

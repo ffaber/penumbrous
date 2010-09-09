@@ -52,6 +52,7 @@
   <!-- Change if you like e.g. "war" better than "www" for the output -->
   <property name="war.dir" location="war"/>
 
+  <property name="project.dir" location="."/>
   <property name="javasrc.dir" location="../../src/java"/>
   <property name="gaesrc.dir" location="src"/>
 
@@ -72,6 +73,11 @@
         <include name="*.xml"/>
       </fileset>
     </copy>
+    <copy todir="${war.dir}/WEB-INF/classes">
+      <fileset dir="${gaesrc.dir}">
+        <include name="client-config.wsdd"/>
+      </fileset>
+    </copy>
     <enhance_war war="${war.dir}"/>
   </target>
 
@@ -85,26 +91,42 @@
     <mkdir dir="${war.dir}/WEB-INF/classes"/>
     <mkdir dir="${war.dir}/WEB-INF/lib"/>
 
-    <mkdir dir="${javasrc.dir}/penumbrouadsapi"/>
-    <copy todir="${javasrc.dir}/penumbrouadsapi">
-    <fileset dir="${javasrc.dir}">
-      <include name="com/penumbrous/penumbrousadsapi/**"/>
-    </fileset>
+    <mkdir dir="${javasrc.dir}/penumbrousadsapi"/>
+    <copy todir="${javasrc.dir}/penumbrousadsapi">
+      <fileset dir="${javasrc.dir}">
+        <include name="com/penumbrous/adwordsapi/**"/>
+        <include name="com/penumbrous/axis/**"/>
+        <include name="com/penumbrous/penumbrousadsapi/**"/>
+      </fileset>
+    </copy>
+
+    <!-- TODO(ffaber): determine if we only need the build lib jars -->
+    <copy todir="${war.dir}/WEB-INF/lib">
+      <fileset dir="${project.dir}/lib">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${project.dir}/../../lib">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${appengine.sdk}/lib/user">
+        <include name="*.jar"/>
+      </fileset>
+      <fileset dir="${appengine.sdk}/lib/shared">
+        <include name="*.jar"/>
+      </fileset>
     </copy>
 
     <!-- TODO(ffaber): make this cleaner -->
-    <javac srcdir="${javasrc.dir}/penumbrouadsapi" destdir="${war.dir}/WEB-INF/classes">
+    <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${war.dir}/WEB-INF/classes">
       <classpath>
-        <fileset dir="${appengine.sdk}/lib/user">
-          <include name="*.jar"/>
-        </fileset>
-        <fileset dir="${appengine.sdk}/lib/shared">
+        <!-- TODO(ffaber): determine if we only need the build lib jars -->
+        <fileset dir="${war.dir}/WEB-INF/lib">
           <include name="*.jar"/>
         </fileset>
       </classpath>
     </javac>
 
-    <delete dir="${javasrc.dir}/penumbrouadsapi"/>
+    <delete dir="${javasrc.dir}/penumbrousadsapi"/>
   </target>
 
   <target name="clean"
