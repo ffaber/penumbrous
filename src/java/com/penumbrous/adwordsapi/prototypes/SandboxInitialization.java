@@ -23,6 +23,8 @@ import com.google.api.adwords.lib.AdWordsUser;
 import com.google.api.adwords.v13.AccountInterface;
 import com.google.api.adwords.v13.ClientAccountInfo;
 
+import org.apache.axis.AxisProperties;
+
 /**
  * This class includes logic to initialize a quintuplet of sandbox accounts.
  * 
@@ -37,7 +39,11 @@ class SandboxInitialization {
     AdWordsServiceLogger.log();
 
     AdWordsUser user = new AdWordsUser(PROPERTY_FILE_LOCATION);
+    AdWordsUser.useClasspathClientConfig(true);
 
+    // This is unneeded and only left as an illustration of how we can override
+    // this value.
+    AxisProperties.setProperty("axis.ClientConfigFile", "client-config.wsdd");
     AccountInterface accountService =
         user.getService(AdWordsService.V13.ACCOUNT_SERVICE);
 
