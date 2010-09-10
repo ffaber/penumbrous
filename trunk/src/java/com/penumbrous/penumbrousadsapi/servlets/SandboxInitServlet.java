@@ -19,6 +19,7 @@ package com.penumbrous.penumbrousadsapi.servlets;
 
 import com.google.api.adwords.lib.AdWordsService;
 import com.google.api.adwords.lib.AdWordsUser;
+import com.google.api.adwords.v13.AccountInfo;
 import com.google.api.adwords.v13.AccountInterface;
 import com.google.api.adwords.v13.ClientAccountInfo;
 import com.google.api.adwords.v201003.cm.Campaign;
@@ -75,6 +76,7 @@ public class SandboxInitServlet extends HttpServlet {
   private void innerService(HttpServletResponse response) throws Exception {
     PrintWriter out = response.getWriter();
 
+    AdWordsUser.useGaeHttpApi(true);
     AdWordsUser.useClasspathClientConfig(true);
     AdWordsUser user = new AdWordsUser(
         LOGIN_EMAIL,
@@ -83,6 +85,14 @@ public class SandboxInitServlet extends HttpServlet {
         "Google",
         DEV_TOKEN,
         false);
+
+    AccountInterface accountService =
+        user.getService(AdWordsService.V13.ACCOUNT_SERVICE);
+    out.println("Obtained account service for user: " + user.getClientEmail());
+    AccountInfo accountInfo = accountService.getAccountInfo();
+    out.println(
+        "Account with id " + accountInfo.getCustomerId()
+        + " and name " + accountInfo.getDescriptiveName());
 
     CampaignServiceInterface campaignService =
         user.getService(AdWordsService.V201003.CAMPAIGN_SERVICE);
