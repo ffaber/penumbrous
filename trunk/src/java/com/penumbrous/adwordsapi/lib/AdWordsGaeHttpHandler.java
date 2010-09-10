@@ -25,6 +25,10 @@ import org.apache.axis.MessageContext;
 import org.apache.axis.handlers.BasicHandler;
 
 /**
+ * This handler simply delegates to an instance of {@link GaeHttpHandler}
+ * to do the real "handling."  It exists to decorate this handling with
+ * additional logic that executes the recording logic within
+ * {@link ServiceAccountantManager}.
  *
  * @author penumbrousdotcom@gmail.com (Fred Faber)
  */
@@ -32,6 +36,8 @@ public class AdWordsGaeHttpHandler extends BasicHandler {
 
   private final GaeHttpHandler gaeHttpHandler;
 
+  /** This is created via reflection through axis. */
+  @SuppressWarnings("UnusedDeclaration")
   public AdWordsGaeHttpHandler() {
     this(new GaeHttpHandler());
   }
