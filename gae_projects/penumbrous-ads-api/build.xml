@@ -53,6 +53,7 @@
   <property name="war.dir" location="war"/>
 
   <property name="project.dir" location="."/>
+  <property name="buildlib.dir" location="../../build_lib"/>
   <property name="javasrc.dir" location="../../src/java"/>
   <property name="gaesrc.dir" location="src"/>
 
@@ -116,8 +117,10 @@
       </fileset>
     </copy>
 
+    <mkdir dir="${project.dir}/classes"/>
     <!-- TODO(ffaber): make this cleaner -->
-    <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${war.dir}/WEB-INF/classes">
+    <!-- <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${war.dir}/WEB-INF/classes"> -->
+    <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${project.dir}/classes">
       <classpath>
         <!-- TODO(ffaber): determine if we only need the build lib jars -->
         <fileset dir="${war.dir}/WEB-INF/lib">
@@ -126,7 +129,25 @@
       </classpath>
     </javac>
 
+    <!-- TODO(ffaber): this is crufty...we should sort out a better scheme -->
+    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask"
+             classpath="${buildlib.dir}/jarjar-1.0.jar"/>
+    <jarjar jarfile="${war.dir}/WEB-INF/lib/penumbrousadsapi.jar">
+      <fileset dir="${project.dir}/classes"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/axis.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/saaj.jar"/>
+      <rule pattern="javax.xml.soap.**" result="com.penumbrous.soap.@1"/>
+    </jarjar>
+
+    <delete file="${war.dir}/WEB-INF/lib/axis.jar"/>
+    <delete file="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner.jar"/>
+    <delete file="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
+    <delete file="${war.dir}/WEB-INF/lib/saaj.jar"/>
+
     <delete dir="${javasrc.dir}/penumbrousadsapi"/>
+    <delete dir="${project.dir}/classes"/>
   </target>
 
   <target name="clean"
