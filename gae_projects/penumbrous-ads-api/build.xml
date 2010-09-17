@@ -135,14 +135,14 @@
     <jarjar jarfile="${war.dir}/WEB-INF/lib/penumbrousadsapi.jar">
       <fileset dir="${project.dir}/classes"/>
       <zipfileset src="${war.dir}/WEB-INF/lib/axis.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-path.jar"/>
       <zipfileset src="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
       <zipfileset src="${war.dir}/WEB-INF/lib/saaj.jar"/>
       <rule pattern="javax.xml.soap.**" result="com.penumbrous.soap.@1"/>
     </jarjar>
 
     <delete file="${war.dir}/WEB-INF/lib/axis.jar"/>
-    <delete file="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner.jar"/>
+    <delete file="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-patch.jar"/>
     <delete file="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
     <delete file="${war.dir}/WEB-INF/lib/saaj.jar"/>
 
