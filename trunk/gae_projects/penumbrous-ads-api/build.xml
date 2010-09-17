@@ -119,7 +119,6 @@
 
     <mkdir dir="${project.dir}/classes"/>
     <!-- TODO(ffaber): make this cleaner -->
-    <!-- <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${war.dir}/WEB-INF/classes"> -->
     <javac srcdir="${javasrc.dir}/penumbrousadsapi" destdir="${project.dir}/classes">
       <classpath>
         <!-- TODO(ffaber): determine if we only need the build lib jars -->
@@ -135,16 +134,16 @@
     <jarjar jarfile="${war.dir}/WEB-INF/lib/penumbrousadsapi.jar">
       <fileset dir="${project.dir}/classes"/>
       <zipfileset src="${war.dir}/WEB-INF/lib/axis.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-path.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-patch.jar"/>
       <zipfileset src="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/saaj.jar"/>
+      <zipfileset src="${war.dir}/WEB-INF/lib/javax-xml-soap-1.6.0.jar"/>
       <rule pattern="javax.xml.soap.**" result="com.penumbrous.soap.@1"/>
     </jarjar>
 
     <delete file="${war.dir}/WEB-INF/lib/axis.jar"/>
     <delete file="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-patch.jar"/>
     <delete file="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
-    <delete file="${war.dir}/WEB-INF/lib/saaj.jar"/>
+    <delete file="${war.dir}/WEB-INF/lib/javax-xml-soap-1.6.0.jar"/>
 
     <delete dir="${javasrc.dir}/penumbrousadsapi"/>
     <delete dir="${project.dir}/classes"/>
