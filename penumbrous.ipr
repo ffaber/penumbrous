@@ -602,6 +602,9 @@
         <root url="jar://$PROJECT_DIR$/build_lib/axis-1.4-src.jar!/" />
         <root url="jar://$PROJECT_DIR$/build_lib/guava-src-r06.zip!/" />
         <root url="jar://$PROJECT_DIR$/build_lib/jsr-305-src.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/oauth-client-1.4-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/oauth-signature-1.4-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/oauth-server-1.4-sources.jar!/" />
       </SOURCES>
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
     </library>
