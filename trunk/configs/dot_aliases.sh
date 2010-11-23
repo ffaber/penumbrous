@@ -176,7 +176,7 @@ alias xl 'xlock'
 alias ksg 'ksysguard  >& /dev/null &'
 alias nxst 'sudo /usr/NX/bin/nxserver --start &'
 
-alias ddate 'date +%Y%m%d.%k%M:%S'
+alias ddate 'date +%Y%m%d.%H%M:%S'
 
 # Perforce
 alias g4e 'g4 edit \!*'
@@ -251,3 +251,4 @@ alias mktdir 'mkdir `date +%Y%m%d.%H%M%S`'
 alias chrome '/usr/bin/google-chrome >& /dev/null &'
 alias cleanfile "tr -cd '\11\12\40-\176' \!*"
 alias getclientname 'g4 client -o | egrep "^Client:" | cut -f 2'
+alias gsl 'grep -a \!:1 ~/.shell.log | tail -10'
