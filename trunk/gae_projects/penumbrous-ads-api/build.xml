@@ -128,23 +128,6 @@
       </classpath>
     </javac>
 
-    <!-- TODO(ffaber): this is crufty...we should sort out a better scheme -->
-    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask"
-             classpath="${buildlib.dir}/jarjar-1.0.jar"/>
-    <jarjar jarfile="${war.dir}/WEB-INF/lib/penumbrousadsapi.jar">
-      <fileset dir="${project.dir}/classes"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/axis.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-patch.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
-      <zipfileset src="${war.dir}/WEB-INF/lib/javax-xml-soap-1.6.0.jar"/>
-      <rule pattern="javax.xml.soap.**" result="com.penumbrous.soap.@1"/>
-    </jarjar>
-
-    <delete file="${war.dir}/WEB-INF/lib/axis.jar"/>
-    <delete file="${war.dir}/WEB-INF/lib/adwords-api-8.1.0-loner-with-issue-62-patch.jar"/>
-    <delete file="${war.dir}/WEB-INF/lib/jaxrpc.jar"/>
-    <delete file="${war.dir}/WEB-INF/lib/javax-xml-soap-1.6.0.jar"/>
-
     <delete dir="${javasrc.dir}/penumbrousadsapi"/>
     <delete dir="${project.dir}/classes"/>
   </target>
