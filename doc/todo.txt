@@ -1,2 +1,3 @@
 1. Continue with GAE / SOAP integration:
   http://www.google.com/codesearch?as_q=GaeHttpTransport&btnG=Search+Code&hl=&as_package=&as_lang=&as_filename=&as_class=&as_function=&as_license=&as_case=
+2.  Change login info to be properties

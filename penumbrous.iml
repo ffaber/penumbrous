@@ -10,6 +10,7 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="build_lib" level="project" />
     <orderEntry type="library" exported="" name="appengine" level="application" />
+    <orderEntry type="library" name="appengine" level="application" />
   </component>
 </module>
 
