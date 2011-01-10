@@ -171,11 +171,6 @@
     <option name="OPEN_IN_BROWSER" value="false" />
     <option name="OUTPUT_DIRECTORY" />
   </component>
-  <component name="HierarchyBrowserManager">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="SORT_ALPHABETICALLY" value="false" />
-    <option name="HIDE_CLASSES_WHERE_METHOD_NOT_IMPLEMENTED" value="false" />
-  </component>
   <component name="IdProvider" IDEtalkID="7ED317E2AF437857651F281C477C29C2" />
   <component name="InspectionProjectProfileManager">
     <profiles>
@@ -405,8 +400,12 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/src/java/com/penumbrous/posts/p20110109/embedded-jetty-example.iml" filepath="$PROJECT_DIR$/src/java/com/penumbrous/posts/p20110109/embedded-jetty-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/penumbrous.iml" filepath="$PROJECT_DIR$/penumbrous.iml" />
     </modules>
+  </component>
+  <component name="ProjectResources">
+    <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
   <component name="ProjectRootConfigurable.UI">
     <option name="proportions">
@@ -601,6 +600,65 @@
       <SOURCES />
       <jarDirectory url="file://$PROJECT_DIR$/build_lib" recursive="false" />
     </library>
+    <library name="jetty_lib">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/jetty_lib" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-setuid/modules/java/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-ant/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-pkcs12/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-integration-tests/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-ant/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/test-jndi-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-setuid/modules/test/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-terracotta/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-jspc-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-blazeds/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-async-rest-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-jboss/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/jetty-monitor/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-spring/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-blazeds/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/test-annotation-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-win32/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-terracotta/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-extra-webapp/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/jetty-monitor/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-j2sehttp-spi/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-spring-ejb3-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/eclipse-signing-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-runner/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-setuid/modules/java/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-ant/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-pkcs12/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-integration-tests/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-ant/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/test-jndi-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-setuid/modules/test/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-terracotta/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-jspc-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-blazeds/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-async-rest-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-jboss/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/jetty-monitor/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-spring/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-blazeds/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/test-annotation-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-win32/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-terracotta/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-extra-webapp/src/test/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/jetty-monitor/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-j2sehttp-spi/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/example-spring-ejb3-webapp/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/contrib/eclipse-signing-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-maven-plugin/src/main/java" />
+        <root url="jar://$PROJECT_DIR$/build_lib/jetty-hightide-7.2.2.v20101205-src.zip!/jetty-hightide-7.2.2.v20101205/jetty-runner/src/main/java" />
+      </SOURCES>
+      <jarDirectory url="file://$PROJECT_DIR$/jetty_lib" recursive="false" />
+    </library>
     <library name="lib">
       <CLASSES>
         <root url="file://$PROJECT_DIR$/lib" />
@@ -615,6 +673,33 @@
         <root url="jar://$PROJECT_DIR$/build_lib/oauth-client-1.4-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/build_lib/oauth-signature-1.4-sources.jar!/" />
         <root url="jar://$PROJECT_DIR$/build_lib/oauth-server-1.4-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/service/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/jndi/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/service/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/servlet/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/grapher/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/assistedinject/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/grapher/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/throwingproviders/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/assistedinject/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/persist/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/persist/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/spring/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/spring/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/multibindings/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/struts2/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/struts2/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/jmx/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/jmx/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/multibindings/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/servlet/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/throwingproviders/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/core/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/mini/test" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/examples/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/mini/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/core/src" />
+        <root url="jar://$PROJECT_DIR$/build_lib/guice-3.0-rc1-src.zip!/guice-3.0-rc1-src/extensions/struts2/example/src" />
       </SOURCES>
       <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
     </library>
