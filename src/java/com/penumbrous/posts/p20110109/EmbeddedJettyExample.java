@@ -64,7 +64,6 @@ class EmbeddedJettyExample {
           .toProvider(JettyServerProvider.onPort(8080))
           .in(Singleton.class);
 
-      bind(String.class).toInstance("Fred");
       bindConstant()
           .annotatedWith(IdentifiesGreetingReceiver .class)
           .to("Fred");
