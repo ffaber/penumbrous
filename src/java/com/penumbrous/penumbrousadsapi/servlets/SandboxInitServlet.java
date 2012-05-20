@@ -17,26 +17,25 @@
 
 package com.penumbrous.penumbrousadsapi.servlets;
 
-import com.google.api.adwords.lib.AdWordsService;
+import com.google.api.adwords.lib.AdWordsService.V201109_1;
 import com.google.api.adwords.lib.AdWordsUser;
-import com.google.api.adwords.v13.AccountInfo;
-import com.google.api.adwords.v13.AccountInterface;
-import com.google.api.adwords.v13.ClientAccountInfo;
+import com.google.api.adwords.v201109_1.cm.Selector;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.rmi.RemoteException;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.rpc.ServiceException;
 
 /**
  * This is a servlet which initializes accounts within the adwords api
  * sandbox.
+ *
+ * <p>Should be available at {@code http://localhost:8080/sandboxinit} once
+ * it's running in dev appserver mode.
  *
  * @author penumbrousdotcom@gmail.com (Fred Faber)
  */
@@ -82,83 +81,25 @@ public class SandboxInitServlet extends HttpServlet {
         DEV_TOKEN,
         false);
 
-    AccountInterface accountService =
-        user.getService(AdWordsService.V13.ACCOUNT_SERVICE);
-    out.println("Obtained account service for user: " + user.getClientEmail());
-    AccountInfo accountInfo = accountService.getAccountInfo();
-    out.println(
-        "Account with id " + accountInfo.getCustomerId()
-        + " and name " + accountInfo.getDescriptiveName());
-
-
-    dumpCampaignsInV200909(user, out);
-    dumpCampaignsInV201003(user, out);
+    dumpCampaignsInV201109_1(user, out);
   }
 
-  private void dumpCampaignsInV200909(AdWordsUser user, PrintWriter out)
+  private void dumpCampaignsInV201109_1(AdWordsUser user, PrintWriter out)
       throws Exception {
 
-    com.google.api.adwords.v200909.cm.CampaignServiceInterface campaignService =
-        user.getService(AdWordsService.V200909.CAMPAIGN_SERVICE);
-    com.google.api.adwords.v200909.cm.CampaignSelector campaignSelector =
-        new com.google.api.adwords.v200909.cm.CampaignSelector();
-    com.google.api.adwords.v200909.cm.CampaignPage campaignPage =
+    com.google.api.adwords.v201109_1.cm.CampaignServiceInterface campaignService =
+        user.getService(V201109_1.CAMPAIGN_SERVICE);
+    com.google.api.adwords.v201109_1.cm.Selector campaignSelector =
+        new Selector();
+    campaignSelector.setFields(new String[] {"Name", "Id"});
+    com.google.api.adwords.v201109_1.cm.CampaignPage campaignPage =
         campaignService.get(campaignSelector);
 
-    for (com.google.api.adwords.v200909.cm.Campaign campaign :
+    for (com.google.api.adwords.v201109_1.cm.Campaign campaign :
         campaignPage.getEntries()) {
       out.println(
           "Campaign with name \"" + campaign.getName() + "\" "
           + "and id \"" + campaign.getId() + "\" was found.");
-    }
-  }
-
-  private void dumpCampaignsInV201003(AdWordsUser user, PrintWriter out)
-      throws Exception {
-
-    com.google.api.adwords.v201003.cm.CampaignServiceInterface campaignService =
-        user.getService(AdWordsService.V201003.CAMPAIGN_SERVICE);
-    com.google.api.adwords.v201003.cm.CampaignSelector campaignSelector =
-        new com.google.api.adwords.v201003.cm.CampaignSelector();
-    com.google.api.adwords.v201003.cm.CampaignPage campaignPage =
-        campaignService.get(campaignSelector);
-
-    for (com.google.api.adwords.v201003.cm.Campaign campaign :
-        campaignPage.getEntries()) {
-      out.println(
-          "Campaign with name \"" + campaign.getName() + "\" "
-          + "and id \"" + campaign.getId() + "\" was found.");
-    }
-  }
-
-  /**
-   * This method should be used with a sandbox login to initialize client
-   * accounts.
-   */
-  private void dumpClientAccountInfos(PrintWriter out, AdWordsUser user)
-      throws ServiceException, RemoteException {
-
-    // This should output:
-    // Account email address is: client_1+<login_id>
-    // Account email address is: client_2+<login_id>
-    // Account email address is: client_3+<login_id>
-    // Account email address is: client_4+<login_id>
-    // Account email address is: client_5+<login_id>
-
-    AccountInterface accountService =
-        user.getService(AdWordsService.V13.ACCOUNT_SERVICE);
-    out.println("Obtained account service for user: " + user.getClientEmail());
-
-    ClientAccountInfo[] clientAccountInfos =
-        accountService.getClientAccountInfos();
-    if (clientAccountInfos == null) {
-      out.println("ClientAccountInfos are null");
-    } else {
-      out.println("Received account info for clients");
-      for (ClientAccountInfo accountInfo : clientAccountInfos) {
-        out.println("Account email address is: "
-            + accountInfo.getEmailAddress());
-      }
     }
   }
 }
