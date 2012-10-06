@@ -19,6 +19,7 @@ package com.penumbrous.penumbrousadsapi.servlets;
 
 import com.google.api.adwords.lib.AdWordsService.V201109_1;
 import com.google.api.adwords.lib.AdWordsUser;
+import com.google.api.adwords.v201109_1.cm.BiddingStrategy;
 import com.google.api.adwords.v201109_1.cm.Selector;
 
 import java.io.IOException;
@@ -91,7 +92,7 @@ public class SandboxInitServlet extends HttpServlet {
         user.getService(V201109_1.CAMPAIGN_SERVICE);
     com.google.api.adwords.v201109_1.cm.Selector campaignSelector =
         new Selector();
-    campaignSelector.setFields(new String[] {"Name", "Id"});
+    campaignSelector.setFields(new String[] {"Name", "Id", "BiddingStrategy"});
     com.google.api.adwords.v201109_1.cm.CampaignPage campaignPage =
         campaignService.get(campaignSelector);
 
@@ -100,6 +101,10 @@ public class SandboxInitServlet extends HttpServlet {
       out.println(
           "Campaign with name \"" + campaign.getName() + "\" "
           + "and id \"" + campaign.getId() + "\" was found.");
+
+      BiddingStrategy biddingStrategy = campaign.getBiddingStrategy();
+      out.println("Using strategy: " + biddingStrategy);
+
     }
   }
 }
